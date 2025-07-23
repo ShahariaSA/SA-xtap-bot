@@ -3,12 +3,13 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import datetime
 import os
 
-# অ্যাডমিন টেলিগ্রাম ID (আপনারটা দিন)
-ADMIN_ID = 6796353433  # <-- আপনার টেলিগ্রাম আইডি
+# ✅ এখানেই নতুন টোকেন
+TOKEN = "AAHDoHpA5MNXDw4S27aVscrD0tIURGPvr78"
 
-# ইউজার ডেটা
+ADMIN_ID = 123456789  # <-- আপনার টেলিগ্রাম ID এখানে দিন
+
 user_data = {}
-today_code = ""  # আজকের ভিডিও কোড
+today_code = ""
 DAILY_TAP_LIMIT = 5000
 COINS_PER_TAP = 5
 WATCH_REWARD = 5000
@@ -59,28 +60,12 @@ async def balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = user_data.get(user_id, {"coins": 0})
     await update.message.reply_text(f"💰 আপনার মোট কয়েন: {user['coins']}")
 
-async def setcode(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    global today_code
-    user_id = update.effective_user.id
-    if user_id != ADMIN_ID:
-        await update.message.reply_text("❌ আপনি এই কমান্ড ব্যবহার করতে পারবেন না।")
-        return
-    if len(context.args) != 1:
-        await update.message.reply_text("❗ নতুন কোড দিন: /setcode <new_code>")
-        return
-    today_code = context.args[0]
-    await update.message.reply_text(f"✅ আজকের কোড সেট করা হয়েছে: {today_code}")
-
-# বট চালু
 if __name__ == "__main__":
-    TOKEN = "7932269020:AAHgy13mzJRJ3fx-FE9j9IyISVoV6LC0Rk4"
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("tap", tap))
     app.add_handler(CommandHandler("watch", watch))
     app.add_handler(CommandHandler("balance", balance))
-    app.add_handler(CommandHandler("setcode", setcode))  # Admin only
 
-    print("✅ Bot is running...")
     app.run_polling()
