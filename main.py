@@ -70,4 +70,4 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("watch", watch))
     app.add_handler(CommandHandler("balance", balance))
 
-    app.run_polling(
+    app.run_polling()
