@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # ✅ এখানেই নতুন টোকেন
-TOKEN = "AAHDoHpA5MNXDw4S27aVscrD0tIURGPvr78"
+TOKEN = "7932269020:AAHDoHpA5MNXDw4S27aVscrD0tIURGPvr78"
 
 ADMIN_ID = 123456789  # <-- আপনার টেলিগ্রাম ID এখানে দিন
 
