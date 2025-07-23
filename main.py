@@ -1,10 +1,12 @@
+import os
+from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import datetime
-import os
 
-# ✅ এখানেই নতুন টোকেন
-TOKEN = "7932269020:AAHDoHpA5MNXDw4S27aVscrD0tIURGPvr78"
+# ✅ Load token from .env file
+load_dotenv()
+TOKEN = os.getenv("BOT_TOKEN")
 
 ADMIN_ID = 123456789  # <-- আপনার টেলিগ্রাম ID এখানে দিন
 
@@ -68,4 +70,4 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("watch", watch))
     app.add_handler(CommandHandler("balance", balance))
 
-    app.run_polling()
+    app.run_polling(
